@@ -19,15 +19,18 @@ import 'package:flutter_bmfbase/BaiduMap/bmfmap_base.dart'
 import 'api/CommonService.dart';
 
 void main() {
-  runApp(MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+
   if(Platform.isIOS){
     BMFMapSDK.setApiKeyAndCoordType(
-        '请输入百度开放平台申请的iOS端API KEY', BMF_COORD_TYPE.BD09LL);
+        'WLhUVzY9o19rlS14rBry5IX3Lfpbbjed', BMF_COORD_TYPE.BD09LL);
   }else if(Platform.isAndroid){
 // Android 目前不支持接口设置Apikey,
 // 请在主工程的Manifest文件里设置，详细配置方法请参考[https://lbsyun.baidu.com/ 官网][https://lbsyun.baidu.com/)demo
     BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);}
 
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -222,7 +225,8 @@ class _MyHomePageState extends State<MyHomePage> {
       } else {
         print("缺少必要参数");
       }
-    } else {
+    }
+    else {
       Toast.show("用户名密码不能为空", context,
           duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
     }
