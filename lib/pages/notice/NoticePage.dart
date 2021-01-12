@@ -57,6 +57,7 @@ class _NoticePageState extends State<NoticePage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("公告"),

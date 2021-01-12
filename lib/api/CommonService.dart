@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:f_train_alarm/model/login/base_bean_entity.dart';
 import 'package:f_train_alarm/model/login/login_bean_entity.dart';
 import 'package:f_train_alarm/model/login/home_list_bean_entity.dart';
+import 'package:f_train_alarm/model/login/history_list_data_entity.dart';
 
 import 'Api.dart';
 
@@ -73,6 +74,24 @@ class CommonService {
     return Dio().get(Api.HOME_LIST,queryParameters: map).then((response) {
       print(response.data);
       return callback(HomeListBeanEntity().fromJson(response.data));
+    });
+  }
+
+
+  ///获取历史告警列表
+  Future<Response> getHistoryAlarmList(String token, String deviceNo, int pageSize,
+      int pageNum, int regId, Function callback) async {
+
+    Map<String ,dynamic> map  = new Map();
+    map["token"]= token;
+    map["deviceNo"]= deviceNo;
+    map["pageSize"]= pageSize;
+    map["pageNum"]= pageNum;
+    map["alarmInfoIds"]= regId;
+
+    return Dio().get(Api.NOTIFICATION_LIST,queryParameters: map).then((response) {
+      print(response.data);
+      return callback(HistoryListDataEntity().fromJson(response.data));
     });
   }
 

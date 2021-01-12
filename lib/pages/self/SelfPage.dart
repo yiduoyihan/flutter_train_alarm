@@ -12,7 +12,7 @@ class SelfPage extends StatefulWidget {
   _SelfPageState createState() => _SelfPageState();
 }
 
-class _SelfPageState extends State<SelfPage> {
+class _SelfPageState extends State<SelfPage> with AutomaticKeepAliveClientMixin{
   String string = "用户名";
 
   @override
@@ -25,11 +25,11 @@ class _SelfPageState extends State<SelfPage> {
         });
       });
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
         // appBar: AppBar(
         //   title: Text("我的"),
@@ -114,4 +114,7 @@ class _SelfPageState extends State<SelfPage> {
               color: Colors.black12, offset: Offset(1.0, 1.0), blurRadius: 4.0)
         ]);
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
